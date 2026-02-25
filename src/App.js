@@ -1,25 +1,40 @@
-import logo from './logo.svg';
-import './App.css';
+import { Routes, Route } from "react-router-dom";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+import SignIn from "./pages/SignIn";
+import SignUp from "./pages/SignUp";
+import OtpVerify from "./pages/OtpVerify";
+import Layout from "./components/Layout";
+import Dashboard from "./pages/Dashboard";
+import RegistrationForm from "./pages/RegistrationForm";
+import ProductList from "./pages/ProductList";
+import ProductDetail from "./pages/ProductDetail";
+
+
+
+
+function App(){
+ return(
+
+   <Routes>
+
+    {/* AUTH PAGES */}
+    <Route path="/" element={<SignIn/>}/>
+    <Route path="/signup" element={<SignUp/>}/>
+    <Route path="/otp" element={<OtpVerify/>}/>
+
+    {/* COMMON LAYOUT */}
+    <Route element={<Layout/>}>
+
+      <Route path="/dashboard" element={<Dashboard/>}/>
+      <Route path="/register" element={<RegistrationForm/>}/>
+      <Route path="/productlist" element={<ProductList/>}/>
+        <Route path="/productdetail" element={<ProductDetail/>}/>
+
+    </Route>
+
+   </Routes>
+
+ )
 }
 
 export default App;
