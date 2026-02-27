@@ -53,7 +53,12 @@ const submitForm = (e) => {
   setErrors(newErrors);
 
   if (Object.keys(newErrors).length === 0) {
-    nav("/signin");
+   localStorage.setItem("user", JSON.stringify({
+  email: form.email,
+  password: form.password
+}));
+
+nav("/signin");
   }
 };
 

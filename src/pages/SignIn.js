@@ -19,29 +19,44 @@ export default function SignIn() {
 
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-  const loginUser = (e) => {
-    e.preventDefault();
+const loginUser = (e) => {
+  e.preventDefault();
 
-    let newErrors = {};
+  let newErrors = {};
 
-    if (!form.email) {
-      newErrors.email = "Please enter email";
-    } else if (!emailRegex.test(form.email)) {
-      newErrors.email = "Invalid email format";
-    }
+  if (!form.email) {
+    newErrors.email = "Please enter email";
+  }
 
-    if (!form.password) {
-      newErrors.password = "Please enter password";
-    } else if (form.password.length < 6) {
-      newErrors.password = "Password must be at least 6 characters";
-    }
+  if (!form.password) {
+    newErrors.password = "Please enter password";
+  }
 
+  // Stop if basic validation fails
+  if (Object.keys(newErrors).length > 0) {
     setErrors(newErrors);
+    return;
+  }
 
-    if (Object.keys(newErrors).length === 0) {
-      nav("/otp"); // redirect to OTP page
-    }
-  };
+  // Get stored user
+  const storedUser = JSON.parse(localStorage.getItem("user"));
+
+  if (!storedUser) {
+    setErrors({ email: "No account found. Please sign up." });
+    return;
+  }
+
+  if (
+    form.email === storedUser.email &&
+    form.password === storedUser.password
+  ) {
+    nav("/otp");  // ✅ Correct login
+  } else {
+    setErrors({
+      password: "Invalid email or password"
+    });
+  }
+};
 
   const handleGoogle = () => {
     window.location.href = "https://accounts.google.com/";
