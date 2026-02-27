@@ -35,16 +35,35 @@ const allProducts = [
 export default function ProductDetail(){
     const [currentPage,setCurrentPage] = useState(1);
     const [selectedProduct,setSelectedProduct] = useState(null);
+    const [search, setSearch] = useState("");
+const [sortOption, setSortOption] = useState("");
 const [showModal,setShowModal] = useState(false);
 
-const perPage = 12;   // 3 rows × 4 columns
+const perPage = 12;   
 
 const lastIndex = currentPage * perPage;
 const firstIndex = lastIndex - perPage;
 
-const currentProducts = allProducts.slice(firstIndex,lastIndex);
+// 🔍 Filter by search
+let filteredProducts = allProducts.filter((product) =>
+  product.name.toLowerCase().includes(search.toLowerCase())
+);
 
-const totalPages = Math.ceil(allProducts.length / perPage);
+// 💰 Sort logic
+if (sortOption === "high") {
+  filteredProducts.sort((a, b) => b.price - a.price);
+}
+
+if (sortOption === "low") {
+  filteredProducts.sort((a, b) => a.price - b.price);
+}
+
+// 📄 Pagination after filter + sort
+const currentProducts = filteredProducts.slice(firstIndex, lastIndex);
+
+const totalPages = Math.ceil(filteredProducts.length / perPage);
+
+
 const openModal = (product)=>{
   setSelectedProduct(product);
   setShowModal(true);
@@ -61,11 +80,21 @@ return(
 
 <div className="filter-bar">
 
-<input className="search-input" placeholder="Search Nike"/>
+<input
+  className="search-input"
+  placeholder="Search product"
+  value={search}
+  onChange={(e) => setSearch(e.target.value)}
+/>
 
-<select className="sort">
-<option>Price High to Low</option>
-<option>Price Low to High</option>
+<select
+  className="sort"
+  value={sortOption}
+  onChange={(e) => setSortOption(e.target.value)}
+>
+  <option value="">Sort By</option>
+  <option value="high">Price High to Low</option>
+  <option value="low">Price Low to High</option>
 </select>
 
 <button className="filter-btn">Filter</button>

@@ -18,9 +18,9 @@ function App(){
    <Routes>
 
     {/* AUTH PAGES */}
-    <Route path="/" element={<SignIn/>}/>
-    <Route path="/signup" element={<SignUp/>}/>
-    <Route path="/otp" element={<OtpVerify/>}/>
+<Route path="/" element={<SignUp/>}/>
+<Route path="/signin" element={<SignIn/>}/>
+<Route path="/otp" element={<OtpVerify/>}/>
 
     {/* COMMON LAYOUT */}
     <Route element={<Layout/>}>

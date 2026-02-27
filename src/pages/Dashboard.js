@@ -11,10 +11,9 @@ export default function Dashboard(){
 
  
 
-   <div className="main">
-   
-    <DashboardContent/>
-   </div>
+<div className="dashboard-wrapper">
+  <DashboardContent/>
+</div>
 
 
  )

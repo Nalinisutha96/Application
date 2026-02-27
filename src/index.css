@@ -41,7 +41,7 @@ html,body,#root{
  box-shadow:0 0 20px rgba(0,0,0,0.2);
  display:flex;
  flex-direction:column;
- gap:10px;
+ gap:3px;
 }
 
 .auth-card h2{
@@ -118,6 +118,7 @@ input{
  align-items:center;
  gap:8px;
  font-size:12px;
+ margin-bottom:10px;
 }
 
 .terms input{
@@ -1529,4 +1530,42 @@ cursor:pointer;
 .product-modal{
 width:95%;
 }
+}
+.form-group {
+  margin-bottom: 18px;
+}
+
+.password-box {
+  position: relative;
+}
+
+.password-box input {
+  width: 100%;
+  padding: 10px 40px 10px 12px;
+  box-sizing: border-box;
+}
+
+.eye {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  color: #777;
+}
+
+.error-text {
+  color: #ff4d4f;
+  font-size: 12px;
+ margin:0px;
+  text-align: left!important;
+}
+
+.input-error {
+  border: 1px solid #ff4d4f !important;
+}
+.dashboard-wrapper{
+  width:100%;
+  margin-left:0;
+  padding:0;
 }

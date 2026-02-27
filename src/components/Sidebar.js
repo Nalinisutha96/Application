@@ -12,10 +12,11 @@ import {
  FaShareAlt,
 
 } from "react-icons/fa";
+import { useNavigate } from "react-router-dom";
 import toggleImg from "../assests/images/toggle.png";
 
 export default function Sidebar({collapse,toggle}){
-
+  const nav = useNavigate();
  return(
  <div className={collapse ? "sidebar collapse" : "sidebar"}>
 
@@ -36,7 +37,7 @@ export default function Sidebar({collapse,toggle}){
 
    {/* DASHBOARD */}
    <ul>
-    <li>
+    <li onClick={() => nav("/dashboard")}>
       <FaChartBar/>
       <span>Dashboards</span>
     </li>
@@ -46,8 +47,11 @@ export default function Sidebar({collapse,toggle}){
    <p className="menu-title">USER</p>
 
    <ul>
-    <li><FaList/><span>List</span></li>
-    <li><FaUser/><span>Registration Form</span></li>
+   <li onClick={() => nav("/productlist")}>
+          <FaList />
+          <span>List</span>
+        </li>
+    <li onClick={() => nav("/register")}><FaUser/><span>Registration Form</span></li>
     <li><FaUser/><span>Public Profile</span></li>
     <li><FaCog/><span>My Account</span></li>
     <li><FaUsers/><span>Community</span></li>
